@@ -13,8 +13,6 @@ class ProfilesController extends Controller {
      * user profile
      */
     public function index(User $user) {
-        // todo!! factorise later
-        // $user = User::findOrFail($user);
 
         $postCount = Cache::remember(
             'count.posts.'. $user->id,

@@ -50,9 +50,6 @@ class PostsController extends Controller {
      * display a particular post
      */
      public function show(\App\Post $post) {
-        // return view('posts.show', [
-        //     'post'=> $post
-        // ]);
 
         return view('posts.show', compact('post'));
         dd($post);
@@ -63,8 +60,6 @@ class PostsController extends Controller {
       */
      public function index() {
         $users = auth()->user()->following()->pluck('profiles.user_id');
-        // $post = Post::whereIn('user_id', $users)->orderBy('created_at', 'DESC')->get();
-        // with('user') => load the user models too without limiting
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
         
         return view('posts.indexposts', compact('posts'));
