@@ -11,6 +11,8 @@
 |
 */
 
+use App\Mail\NewUserWelcomeMail;
+
 Auth::routes();
 
 Route::get('/', 'PostsController@index');
